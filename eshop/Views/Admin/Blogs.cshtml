@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    table{
+        width: 100%;
+        margin: 10px 10px;
+    }
+    td a{
+        color: black;
+    }
+</style>
+
+<div class="d-flex justify-content-center">
+<table class="table table-hover">
+  <tr>
+      <td>#</td>
+      <td>Name</td>
+      <td>Author</td>
+      <td>Actions</td>
+  </tr>
+    @foreach(Blog blog in @ViewBag.Blogs)
+    {
+        <tr>
+            <td>@blog.Id</td>
+            <td>@blog.Name</td>
+            <td>@blog.Author</td>
+            <td class="d-flex justify-content-center gap-3"><a asp-action="BlogEdit" asp-route-id="@blog.Id"><i class="bi bi-pencil-square"></i></a><a asp-action="BlogRemove" asp-route-id="@blog.Id"><i class="bi bi-x"></i></a></td>
+        </tr>
+    }
+</table>
+</div>
+<a class="btn btn-primary mt-3 ml-3" asp-action="BlogEdit">Add Blog</a>

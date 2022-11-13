@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    table{
+        width: 100%;
+        margin: 10px 10px;
+    }
+    td a {
+        color: black;
+    }
+</style>
+
+<div class="d-flex justify-content-center">
+<table class="table table-hover">
+  <tr>
+      <td>#</td>
+      <td>Name</td>
+      <td>Price</td>
+      <td>Discount</td>
+      <td>Quantity</td>
+      <td>Actions</td>
+  </tr>
+    @foreach(Product product in @ViewBag.Products)
+    {
+        <tr>
+            <td>@product.Id</td>
+            <td>@product.Name</td>
+            <td>@product.Price</td>
+            <td>@product.Discount%</td>
+            <td>@product.Quantity</td>
+            <td class="d-flex justify-content-center gap-3"><a asp-action="ProductEdit" asp-route-id="@product.Id"><i class="bi bi-pencil-square"></i></a><a asp-action="ProductRemove" asp-route-id="@product.Id"><i class="bi bi-x"></i></a></td>
+        </tr>
+    }
+</table>
+</div>
+<a class="btn btn-primary mt-3 ml-3" asp-action="ProductEdit">Add Product</a>

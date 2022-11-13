@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Your Shopping Cart";
+}
+
+<style>
+    .products-table{
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    .products-table tr{
+        height: 180px;
+    }
+    .products-table * {
+        border: 1px #DDDDDD solid;
+    }
+    .products-table img {
+        max-height: 160px;
+    }
+    .products-table a {
+        text-decoration: none;
+        color: black;
+        border: none;
+        font-size: 30px;
+    }
+    .cart-buttons a {
+        border-radius: 0;
+        padding: 8px 25px;
+    }
+    .cart-payment .btn {
+        border-radius: 0;
+    }
+    .shipping * {
+        margin-top: 15px;
+    }
+    .subtotal * {
+        border: 1px #DDDDDD solid;
+        padding: 0 15px;
+    }
+    .subtotal tr{
+        height: 51px;
+    }
+</style>
+
+<vc:navigation></vc:navigation>
+
+<div class="mt-5 mb-5">
+    <table class="products-table">
+        <tr style="height: 41px;">
+            <td width="180px">Image</td>
+            <td width="305px">Product</td>
+            <td width="145px">Price</td>
+            <td width="203px">Quantity</td>
+            <td width="135px">Total</td>
+            <td>Remove</td>
+        </tr>
+        @foreach (var checkoutItem in @ViewBag.CheckoutItems)
+        {
+            var product = ((List<Product>)ViewBag.Products).Find(x => x.Id == checkoutItem.ProductId);
+            <tr>
+                <td><img src="~/products/@product.Image" /></td>
+                <td>@product.Name</td>
+                <td>$@Math.Round(product.Price*(1-product.Discount/100), 2)</td>
+                <td><input type="number" min=0 value="@checkoutItem.Quantity" style="width: 100px; height: 40px;"></td>
+                <td>$@Math.Round(product.Price*(1-product.Discount/100)*checkoutItem.Quantity, 2)</td>
+                <td><a asp-action="Remove" asp-route-id="@product.Id">×</a></td>
+            </tr>
+        }
+    </table>
+    <div class="cart-buttons d-flex justify-content-end gap-3 mt-3">
+        <a class="btn btn-dark" asp-action="">Update Cart</a>
+        <a class="btn btn-dark" asp-action="Index" asp-controller="Home">Continue Shopping</a>
+        <a class="btn btn-dark" asp-action="Clear">Clear Cart</a>
+    </div>
+    <div class="cart-payment d-flex justify-content-between mt-4">
+        <div class="d-flex flex-column shipping">
+            <h3>Get shipping estimatesss</h3>
+            <select style="width: 294px; height: 38px;">
+                <option>---</option>
+                <option>Austria</option>
+                <option>Czechia</option>
+                <option>Germany</option>
+                <option>Poland</option>
+                <option>Slovakia</option>
+            </select>
+            <input style="width: 192px; height: 38px;" type="text" placeholder="Zip/Postal Code" />
+            <button style="width: 160px;" class="btn btn-dark">Calculate shipping</button>
+        </div>
+        <div class="d-flex justify-content-start flex-column">
+            <h3>Cart Totals</h3>
+            <table class="subtotal">
+                <tr>
+                    <td width="290px" class="font-weight-bold">Subtotal</td>
+                    <td width="290px">$@ViewBag.Total</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Total</td>
+                    <td class="font-weight-bold">$@ViewBag.Total</td>
+                </tr>
+            </table>
+            @if(ViewBag.CheckoutItems.Count > 0)
+            {
+                <a class="btn btn-dark mt-3" style="width: 179px;" asp-action="Information">Proceed to Checkout</a>
+            }
+        </div>
+    </div>
+</div>

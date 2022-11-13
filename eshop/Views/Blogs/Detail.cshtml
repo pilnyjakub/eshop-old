@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = @ViewBag.Blog.Name;
+}
+
+@model Comment
+
+<style>
+    .sidepanel{
+        background: #F8F8F8;
+        min-width: 262px;
+        padding: 20px;
+        flex: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .sidepanel p {
+        margin: 5px 0;
+    }
+    .sidepanel a{
+        text-decoration: none;
+        color: black;
+    }
+    .box{
+        border: 1px solid #DDDDDD;
+    }
+</style>
+
+<vc:navigation></vc:navigation>
+
+<div class="d-flex mt-5">
+    <div style="flex: auto;" class="d-flex flex-column">
+        <div class="box p-5">
+            <h3 class="text-center">@ViewBag.Blog.Name</h3>
+            <p class="text-center"><span class="text-muted"><i class="bi bi-person-circle"></i> Posted By: </span>@ViewBag.Blog.Author</p>
+            <img src="~/blogs/@ViewBag.Blog.Image" style="width: 100%;" />
+            <p class="mt-5">@ViewBag.Blog.Content</p>
+        </div>
+        <div class="mt-3">
+            <h5>Add Comment</h5>
+            <form asp-action="AddComment" asp-controller="Account" class="d-flex align-items-center gap-2">
+                <textarea asp-for="Text" required></textarea>
+                <button type="submit">Add Comment</button>
+                <input type="hidden" asp-for="IdBlog" value="@ViewBag.Blog.Id" />
+            </form>
+        </div>
+        <div class="mt-3">
+            <h4>Comments</h4>
+            @foreach(Comment comment in ViewBag.Comments)
+            {
+                <div class="box mt-3 d-flex flex-column p-3">
+                    <p class="text-muted">@comment.Author</p>
+                    <p>@comment.Text</p>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="sidepanel ml-4">
+        <h5>Search</h5>
+        <div class="input-group" style="border-radius: 0">
+            <input style="border-radius: 0" class="form-control" type="search" placeholder="Search our store"/>
+            <span style="border-radius: 0; background: white;" class="input-group-text">Search</span>
+        </div>
+        <h5 class="mt-5">Custom Menu</h5>
+        <a asp-controller="Home" asp-action="Index">Home</a>
+        <a asp-controller="" asp-action="">Shop</a>
+        <a asp-controller="" asp-action="">Products</a>
+        <a asp-controller="Blogs" asp-action="Index">Blog</a>
+        <a asp-controller="Home" asp-action="About">About</a>
+        <a asp-controller="Home" asp-action="Contact">Contact</a>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Blogs";
+}
+
+<style>
+    .sidepanel{
+        background: #F8F8F8;
+        min-width: 262px;
+        padding: 20px;
+        flex: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .sidepanel p {
+        margin: 5px 0;
+    }
+    .sidepanel a{
+        text-decoration: none;
+        color: black;
+    }
+</style>
+
+<vc:navigation></vc:navigation>
+
+<div class="d-flex mt-5">
+    <div class="box" style="flex: auto;">
+        @foreach (var blog in ViewBag.Blogs)
+       {
+           <a asp-controller="Blogs" asp-action="Detail" asp-route-id="@blog.Id">
+               <img src="~/blogs/@blog.Image" style="width: 100%;" />
+           </a>
+           <a asp-controller="Blogs" asp-action="Detail" asp-route-id="@blog.Id" style="color: black; text-decoration: none; font-size: 22px;">
+               <p class="mt-3">@blog.Name</p>
+           </a>
+           <p><i class="bi bi-person-circle"></i> Posted By: @blog.Author</p>
+           <hr />
+           <p>@blog.Content.Substring(0, Math.Min(120, blog.Content.Length))</p>
+           <a class="btn" asp-controller="Blogs" asp-action="Detail" asp-route-id="@blog.Id" style="background: #F2F2F2; padding: 15px; margin-bottom: 20px;">READ MORE</a>
+       }
+    </div>
+    <div class="sidepanel ml-4">
+        <h5>Search</h5>
+        <div class="input-group" style="border-radius: 0">
+            <input style="border-radius: 0" class="form-control" type="search" placeholder="Search our store"/>
+            <span style="border-radius: 0; background: white;" class="input-group-text">Search</span>
+        </div>
+        <h5 class="mt-5">Custom Menu</h5>
+        <a asp-controller="Home" asp-action="Index">Home</a>
+        <a asp-controller="" asp-action="">Shop</a>
+        <a asp-controller="" asp-action="">Products</a>
+        <a asp-controller="Blogs" asp-action="Index">Blog</a>
+        <a asp-controller="Home" asp-action="About">About</a>
+        <a asp-controller="Home" asp-action="Contact">Contact</a>
+    </div>
+</div>

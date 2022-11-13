@@ -1,0 +1,41 @@
+﻿<style>
+
+    .highlighted{
+        color: #FE989A;
+        text-decoration: none;
+    }
+
+    .navigation {
+        margin-top: -10px;
+        height: 275px;
+    }
+
+    .nav-text{
+        position: relative;
+    }
+
+    .nav-text .text {
+        position: absolute;
+        top: 110px;
+    }
+
+    .navigation img {
+        position: absolute;
+        height: 275px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+</style>
+
+<div class="navigation">
+    <div class="d-flex justify-content-center align-content-center text-center">
+        <img src="~/css/navigation.png" />
+        <div class="nav-text d-flex justify-content-center align-content-center text-center">
+            <div class="text">
+            <h3 class="text-nowrap">@ViewData["Title"]</h3>
+            <p class="text-nowrap">@ViewContext.RouteData.Values["controller"].ToString() > <span class="highlighted">@ViewData["Title"]</span></p>
+            </div>
+        </div>
+    </div>
+</div>

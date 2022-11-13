@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    .banner{
+        margin-top: -10px;
+    }
+
+    .highlighted{
+        color: #FE989A;
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    .info p {
+        margin: 5px;
+    }
+
+    .banner {
+        position: relative;
+    }
+
+    .banner .text{
+        position: absolute;
+        top: 30%;
+        left: 10%;
+    }
+    
+    .newsletter{
+        position: absolute;
+        background: #FE989A;
+        padding: 90px;
+        width: 100%;
+    }
+
+    .newsletter .form input{
+        width: 800px;
+        height: 50px;
+    }
+
+    .newsletter .form input::placeholder{
+        padding-left: 15px;
+    }
+
+    .newsletter .form .btn {
+        color: white;
+        font-weight: bold;
+    }
+
+</style>
+
+<div class="banner">
+    <img src=~/css/banner-0.png />
+    <div class="text justify-content-center text-center">
+        <div class="highlighted" style="font-size: 24px;">COSMETIC BEST SELLING</div>
+        <div style="font-size: 70px; font-weight: 600;">Fashion Cosmetic</div>
+        <p style="max-width: 550px;">It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+        <button class="btn" style="color: white; background: #FE989A; border-radius: unset;">Shopping Now</button>
+    </div>
+</div>
+<div class="pb-5 pt-5">
+    <div class="d-flex justify-content-between">
+        <div class="d-flex info align-items-center">
+            <img src=~/css/1_small_truck.png />
+            <div class="banner-text">
+                <p class="highlighted">Free Shipping</p>
+                <p>Free shipping on order</p>
+            </div>
+        </div>
+        <div class="d-flex info align-items-center">
+            <img src=~/css/1_small_headset.png />
+            <div class="banner-text">
+                <p class="highlighted">Support 24/7</p>
+                <p>Contact us 24 hrs a day</p>
+            </div>
+        </div>
+        <div class="d-flex info align-items-center">
+            <img src=~/css/1_small_lock.png />
+            <div class="banner-text">
+                <p class="highlighted">Payment Secure</p>
+                <p>Free shipping on order</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="text-center">Arrivals Product</h3>
+<div class="d-flex justify-content-center gap-3 pt-3">
+    <h5>Top Sell</h5>
+    <h5>Best Sellers</h5>
+    <h5>New Arrivals</h5>
+</div>
+<div class="grid pt-4 pb-4">
+    <div class="row row-cols-4 justify-content-center">
+        @foreach(var product in ViewBag.Products)
+        {
+            <vc:product product="product"></vc:product>
+        }
+    </div>
+</div>
+
+<div class="d-flex flex-row justify-content-between">
+    <img src="~/css/banner-1.png" />
+    <img src="~/css/banner-2.png" />
+</div>
+
+<div class="d-flex justify-content-between pt-3">
+    <div class="d-flex flex-column">
+    <h4>Top Rated</h4>
+    @foreach (var rowProduct in ViewBag.RowProducts)
+    {
+        <vc:row-product product="rowProduct"></vc:row-product>
+    }
+    </div>
+    <div class="d-flex flex-column">
+    <h4>Featured</h4>
+    @foreach (var rowProduct in ViewBag.RowProducts)
+        {
+            <vc:row-product product="rowProduct"></vc:row-product>
+        }
+    </div>
+    <div class="d-flex flex-column">
+    <h4>Bestseller Products</h4>
+    @foreach (var rowProduct in ViewBag.RowProducts)
+        {
+            <vc:row-product product="rowProduct"></vc:row-product>
+        }
+    </div>
+</div>
+
+<div class="d-flex justify-content-center" style="height: 311px; margin-bottom: -10px;">
+    <div class="newsletter text-center">
+        <h3>Sign Up For Newsletters</h3>
+        <p>Be the First to Know. Sign up for newsletter today</p>
+        <div class="form">
+            <input class="border-0" type="text" placeholder="Your email address" />
+            <a class="btn">Subscribe !</a>
+        </div>
+    </div>
+</div>

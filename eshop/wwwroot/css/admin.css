@@ -1,0 +1,41 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+aside {
+    width: 104px;
+    background: #5074DC;
+    height: 100%;
+}
+
+aside a, aside a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+aside hr {
+    margin: 0 10px;
+    color: #F1F2F5;
+}
+
+.top {
+    width: 100%;
+    height: 3rem;
+}
+
+.top a {
+    color: #5074DC;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+main {
+    background: #F1F2F5;
+    height: 100%;
+}

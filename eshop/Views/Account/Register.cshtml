@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Create Account";
+}
+
+@model LoginViewModel
+
+<style>
+    form {
+        width: 475px;
+        height: 270px;
+    }
+    form .form-control{
+        border-radius: 0;
+    }
+
+    form .form-group {
+        margin: 0 0 20px 0;
+    }
+
+    form a {
+        color: black;
+        text-decoration: none;
+    }
+
+    form .btn {
+        border-radius: 0;
+        padding: 8px 25px;
+        width: 91px;
+    }
+
+    .login-form-container{
+        background: #F3F3F3;
+        width: 555px;
+        height: 495px;
+        margin: 60px 0 100px 0;
+    }
+    .login-form-container h2{
+        margin-top: -30px;
+    }
+
+</style>
+
+<vc:navigation></vc:navigation>
+
+<div class="d-flex justify-content-center flex-column text-center align-self-center login-form-container">
+    <div class="d-flex justify-content-center flex-column align-self-center">
+        <h2>Create Account</h2>
+        <p>Please Register using account detail bellow.</p>
+        <form asp-action="Register" class="d-flex flex-column align-self-center">
+            <div class="form-group d-flex">
+                <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name" required/>
+            </div>
+            <div class="form-group d-flex">
+                <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name" required/>
+            </div>
+            <div class="form-group d-flex">
+                <input asp-for="Email" type="email" class="form-control" placeholder="Email" required/>
+            </div>
+            <div class="form-group d-flex">
+                <input asp-for="Password" type="password" class="form-control" placeholder="Password" required/>
+            </div>
+            <div class="text-start d-flex flex-column mt-3">
+                <button type="submit" class="btn btn-dark">Create</button>            
+                <a class="mt-2" asp-controller="Home" asp-action="Index">Return to Store</a>
+            </div>
+            <input type="hidden" asp-for="Controller" />
+            <input type="hidden" asp-for="Action" />
+        </form>
+    </div>
+</div>

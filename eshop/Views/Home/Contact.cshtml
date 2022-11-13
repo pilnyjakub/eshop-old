@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+
+<style>
+    form {
+        width: 555px;
+    }
+
+    .display-6{
+        margin-bottom: 15px;
+        font-weight: 400;
+    }
+
+    .part {
+        font-size: 20px;
+        margin: 10px;
+    }
+
+    .mb-3 > .form-control{
+        border-radius: unset;
+        padding: 20px;
+    }
+
+    .required{
+        color: red;
+    }
+
+    .contact {
+        width: 475px;
+        background: #F2F2F2;
+        padding: 30px;
+    }
+
+</style>
+
+<vc:navigation></vc:navigation>
+@model Message
+<div class="d-flex justify-content-evenly gap-5 mt-5">
+    <form asp-action="About">
+        <p class="display-6">Tell Us Your Message</p>
+        <div class="mb-3">
+            <label for="contactInputName" class="form-label">Your Name <span class="required">*</span></label>
+            <input type="text" class="form-control" id="contactInputName" placeholder="Full Name" asp-for="Name">
+        </div>
+        <div class="mb-3">
+            <label for="contactInputEmail" class="form-label">Your Email <span class="required">*</span></label>
+            <input type="email" class="form-control" id="contactInputEmail" placeholder="Email Address" asp-for="Email">
+        </div>
+        <div class="mb-3">
+            <label for="contactInputSubject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="contactInputSubject" placeholder="Subject" asp-for="Subject">
+        </div>
+        <div class="mb-3">
+            <label for="contactInputMessage" class="form-label">Your Message</label>
+            <textarea class="form-control" id="contactInputMessage" rows="6" placeholder="Message" asp-for="Text"></textarea>
+        </div>
+        <button type="submit" class="btn btn-secondary border-0" style="border-radius: unset;background: #FE989A;">Send Message</button>
+     </form>
+     <div class="contact">
+          <p class="display-6">Contact Us</p>
+          <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human. qui sequitur mutationem consuetudium lectorum. Mirum est notare quam</p>
+          <div>
+            <h4><i class="bi bi-pc-display"></i> Address</h4>
+            <p>123 Main Street, Anytown, CA 12345 – USA</p>
+          </div>
+          <hr />
+          <div>
+            <h4><i class="bi bi-telephone-fill"></i> Phone</h4>
+            <p>Mobile: 123 456 789<br>Hotline: 123 456 789</p>
+          </div>
+          <hr />
+          <div>
+            <h4><i class="bi bi-envelope"></i> Email</h4>
+            <p>info@demo.com<br>info@demo.com</p>
+          </div>
+          <hr />
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Payment";
+    Layout = "~/Views/Shared/_Checkout.cshtml";
+}
+
+@model Order
+
+<style>
+    .form-control {
+        width: 100%;
+        height: 48px;
+        margin: 5px 0;
+    }
+    .btn {
+        background: #FE989A;
+        width: 183px;
+        height: 60px;
+    }
+    .form-check-input:checked{
+        background: #FE989A;
+    }
+    .box{
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        padding: 10px
+    }
+    form {
+        width: 100%;
+    }
+</style>
+
+<div>
+    <a asp-controller="Home" asp-action="Index"><img src="~/css/debra-logo-black.png" alt="Debra Shop" /></a>
+    <div class="mb-3">
+        <p><span>Information</span> > <span>Shipping</span> > <span>Payment</span></p>
+    </div>
+    <div class="box">
+        <div class="d-flex">
+            <span class="text-muted" style="flex: 1;">Contact</span><span style="flex: 6;">@ViewBag.Order.Email</span>
+        </div>
+        <hr />
+        <div class="d-flex">
+             <span class="text-muted" style="flex: 1;">Ship to</span> <p style="flex: 6; margin: 0;">@ViewBag.Order.Address, @ViewBag.Order.City, @ViewBag.Order.Country</p>
+        </div>
+        <hr />
+        <div class="d-flex">
+            <span class="text-muted" style="flex: 1;">Method</span><span style="flex: 6;">Standart · Free</span>
+        </div>
+    </div>
+    <form asp-action="Payment">
+    <h5 class="mt-5">Payment</h5>
+    <p>All transactions are secure and encrypted.</p>
+    <div class="box">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="Payment" type="radio" value="COD" id="payment" checked />
+            <label class="form-check-label" for="payment">Cash on Delivery (COD)</label>    
+        </div>
+    </div>
+    <h5 class="mt-5">Billing address</h5>
+    <p>Select the address that matches your card or payment method.</p>
+    <div class="box">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" value="Standart" id="shipping" checked />
+            <label class="form-check-label" for="shipping">Same as shipping address</label>    
+        </div>
+    </div>
+        <div class="d-flex align-items-center gap-3">
+            <button class="btn mt-3" type="submit">Complete order</button>
+            <a asp-action="Shipping" class="mt-3" style="color: #FE989A; text-decoration: none;">Return to shipping</a>
+        </div>
+    </form>
+</div>

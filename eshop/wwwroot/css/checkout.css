@@ -1,0 +1,51 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+.divide {
+    height: 100%;
+    width: 100%;
+}
+.divide main {
+    margin: 56px 66px 0 300px;
+}
+.divide aside {
+    width: 100%;
+    background: #FAFAFA;
+}
+main{
+    width: 100%;
+}
+aside .side {
+    width: 462px;
+    margin: 56px 300px 0 44px;
+}
+aside img {
+    max-height: 64px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+}
+aside p {
+    margin: 0
+}
+.quant{
+    position: relative;
+}
+.quantity {
+    position: absolute;
+    right: -8px;
+    top: -40px;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background: #7F7F7F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}

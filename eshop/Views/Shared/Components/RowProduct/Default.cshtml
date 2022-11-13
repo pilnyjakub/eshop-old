@@ -1,0 +1,42 @@
+﻿<style>
+    a, a:hover {
+        text-decoration: none;
+    }
+
+    .newPrice {
+        color: #FE989A;
+    }
+    
+    .product-row{
+        margin: 10px 0;
+    }
+
+    .product-row img{
+        max-width: 100px;
+    }
+
+    .product-row p {
+        margin: 0 15px;
+    }
+
+</style>
+
+
+<a class="text-reset" asp-controller="Products" asp-action="Detail" asp-route-id="@ViewBag.Product.Id">
+    <div class="d-flex flex-row product-row">
+        <img src="~/products/@ViewBag.Product.Image" />
+        <div>
+            <p>@ViewBag.Product.Name</p>
+            <p class="rating">☆☆☆☆☆</p>
+            @if (ViewBag.Product.Discount == 0)
+            {
+            <p class="font-weight-bold">$@ViewBag.Product.Price</p>
+            }
+            else
+            {
+            double newPrice = Math.Round(ViewBag.Product.Price * (1 - (double)ViewBag.Product.Discount / 100), 2);
+            <p class="font-weight-bold newPrice">$@newPrice <span class="text-decoration-line-through font-weight-normal text-muted">$@ViewBag.Product.Price</span></p>
+            }
+        </div>
+    </div>
+</a>

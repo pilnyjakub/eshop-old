@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Admin";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    form{
+        margin: 10px 10px;
+        gap: 5px;
+        width: 50%;
+    }
+</style>
+
+@model ProductViewModel
+<div class="d-flex justify-content-center mt-3">
+    <form asp-action="ProductEdit" enctype="multipart/form-data" class="d-flex flex-column">
+        <div class="form-group">
+            <label asp-for="Product.Name">Name</label>
+            <input asp-for="Product.Name" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Vendor">Vendor</label>
+            <input asp-for="Product.Vendor" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Description">Description</label>
+            <input asp-for="Product.Description" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Price">Price</label>
+            <input type="number" min=0 step=0.1 asp-for="Product.Price" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Discount">Discount</label>
+            <input type="number" min=0 step=0.1 asp-for="Product.Discount" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Quantity">Quantity</label>
+            <input type="number" min=0 step=1 asp-for="Product.Quantity" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Rating">Rating</label>
+            <input type="number" min=0 step=0.1 asp-for="Product.Rating" class="form-control" required/>
+        </div>
+        <div class="form-group d-flex align-items-center gap-2">
+            <input asp-for="Image" class="form-control" type="file" />
+            @if(ViewBag.Image != "")
+            {
+                <img src="~/products/@ViewBag.Image" height=50 />
+            }
+        </div>        
+        <input type="hidden" asp-for="Product.Id" />
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>

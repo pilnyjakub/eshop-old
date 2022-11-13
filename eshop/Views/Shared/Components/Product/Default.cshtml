@@ -1,0 +1,53 @@
+﻿<style>
+    a, a:hover {
+        text-decoration: none;
+    }
+
+    .badge {
+        background: #FE989A;
+        color: white;
+        width: 50px;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        border-radius: unset;
+    }
+
+    .card {
+        border-radius: unset;
+    }
+
+    .card p {
+        margin-bottom: 0;
+    }
+
+    .newPrice {
+        color: #FE989A;
+    }
+
+    .rating {
+        color: #FEDC38;
+        font-size: 20px;
+    }
+    
+</style>
+
+<a class="text-reset" asp-controller="Products" asp-action="Detail" asp-route-id="@ViewBag.Product.Id">
+    <div class="card">
+        <img src="~/products//@ViewBag.Product.Image" class="card-img-top" />
+        <div class="card-body">
+            <p>@ViewBag.Product.Name</p>
+            <div class="rating">☆☆☆☆☆</div>
+            @if (ViewBag.Product.Discount == 0)
+            {
+            <p class="font-weight-bold">$@ViewBag.Product.Price</p>
+            }
+            else
+            {
+            <span class="badge">-@ViewBag.Product.Discount%</span>
+            double newPrice = Math.Round(ViewBag.Product.Price * (1 - (double)ViewBag.Product.Discount / 100), 2);
+            <p class="font-weight-bold newPrice">$@newPrice <span class="text-decoration-line-through font-weight-normal text-muted">$@ViewBag.Product.Price</span></p>
+            }
+        </div>
+    </div>
+</a>
